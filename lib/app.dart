@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/project_generator/presentation/pages/home_page.dart';
+import 'features/project_generator/presentation/providers/generator_provider.dart';
 
-class AIDocGeneratorApp extends StatelessWidget {
+class AIDocGeneratorApp extends ConsumerStatefulWidget {
   const AIDocGeneratorApp({super.key});
+
+  @override
+  ConsumerState<AIDocGeneratorApp> createState() => _AIDocGeneratorAppState();
+}
+
+class _AIDocGeneratorAppState extends ConsumerState<AIDocGeneratorApp> {
+  @override
+  void initState() {
+    super.initState();
+    // 初始化设置，加载保存的配置
+    Future.microtask(() {
+      ref.read(settingsProvider.notifier).init();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

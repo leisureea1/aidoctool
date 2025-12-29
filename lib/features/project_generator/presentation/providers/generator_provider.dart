@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../ai_providers/ai_provider.dart';
 import '../../../../ai_providers/provider_factory.dart';
@@ -6,6 +7,7 @@ import '../../../../core/config/ai_config.dart';
 import '../../../../core/constants/tech_stacks.dart';
 import '../../../../core/constants/ui_styles.dart';
 import '../../../../core/errors/failures.dart';
+import '../../../../core/services/storage_service.dart';
 import '../../data/repositories/generator_repository_impl.dart';
 import '../../domain/entities/project_spec.dart';
 import '../../domain/entities/generated_doc.dart';
@@ -109,10 +111,62 @@ class SettingsState {
 
 /// 设置 Provider
 class SettingsNotifier extends StateNotifier<SettingsState> {
+  StorageService? _storage;
+  
   SettingsNotifier() : super(const SettingsState());
+  
+  /// 初始化并加载保存的配置
+  Future<void> init() async {
+    final prefs = await SharedPreferences.getInstance();
+    _storage = StorageService(prefs);
+    _loadSavedSettings();
+  }
+  
+  void _loadSavedSettings() {
+    if (_storage == null) return;
+    
+    final apiKeys = _storage!.loadApiKeys();
+    final selectedModelId = _storage!.loadSelectedModelId();
+    final selectedSubModels = _storage!.loadSelectedSubModels();
+    final customBaseUrl = _storage!.loadCustomBaseUrl();
+    final customModel = _storage!.loadCustomModel();
+    final customMaxTokens = _storage!.loadCustomMaxTokens();
+    
+    // 找到对应的模型配置
+    AIModelConfig selectedModel = AIConfigs.openAI;
+    if (selectedModelId != null) {
+      final found = AIConfigs.presets.where((c) => c.id == selectedModelId);
+      if (found.isNotEmpty) {
+        selectedModel = found.first;
+        // 如果是自定义模型，恢复自定义配置
+        if (selectedModelId == 'custom') {
+          selectedModel = selectedModel.copyWith(
+            baseUrl: customBaseUrl,
+            model: customModel,
+            maxTokens: customMaxTokens,
+          );
+        } else if (selectedSubModels.containsKey(selectedModelId)) {
+          // 恢复子模型选择
+          selectedModel = selectedModel.copyWith(
+            model: selectedSubModels[selectedModelId],
+          );
+        }
+      }
+    }
+    
+    state = state.copyWith(
+      apiKeys: apiKeys,
+      selectedModel: selectedModel,
+      selectedSubModels: selectedSubModels,
+      customBaseUrl: customBaseUrl,
+      customModel: customModel,
+      customMaxTokens: customMaxTokens,
+    );
+  }
   
   void setModel(AIModelConfig model) {
     state = state.copyWith(selectedModel: model);
+    _storage?.saveSelectedModelId(model.id);
   }
   
   /// 为指定提供商设置 API Key
@@ -124,6 +178,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       newKeys[providerId] = key;
     }
     state = state.copyWith(apiKeys: newKeys);
+    _storage?.saveApiKeys(newKeys);
   }
   
   /// 获取指定提供商的 API Key
@@ -132,6 +187,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   /// 设置子模型选择
   void setSubModels(Map<String, String> subModels) {
     state = state.copyWith(selectedSubModels: Map.from(subModels));
+    _storage?.saveSelectedSubModels(subModels);
   }
   
   /// 设置自定义 API 配置
@@ -141,6 +197,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       customModel: model,
       customMaxTokens: maxTokens,
     );
+    _storage?.saveCustomConfig(baseUrl, model, maxTokens);
   }
   
   void togglePlatform(AppPlatform platform, bool selected) {
