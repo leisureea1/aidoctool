@@ -215,8 +215,8 @@ class TechStackSelector extends ConsumerWidget {
         _CategorySection(
           category: TechCategory.frontend,
           title: '前端技术栈',
-          subtitle: '必选，可多选',
-          required: true,
+          subtitle: '可选，可多选',
+          required: false,
         ),
         const SizedBox(height: 24),
         
@@ -224,8 +224,8 @@ class TechStackSelector extends ConsumerWidget {
         _CategorySection(
           category: TechCategory.backend,
           title: '后端技术栈',
-          subtitle: '必选，可多选',
-          required: true,
+          subtitle: '可选，可多选',
+          required: false,
         ),
         const SizedBox(height: 24),
         
@@ -243,8 +243,8 @@ class TechStackSelector extends ConsumerWidget {
           _CategorySection(
             category: TechCategory.adminFrontend,
             title: '后台管理前端',
-            subtitle: '必选，可多选',
-            required: true,
+            subtitle: '可选，可多选',
+            required: false,
           ),
         ],
       ],

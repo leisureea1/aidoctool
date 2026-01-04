@@ -16,8 +16,8 @@ enum AppPlatform {
 
 /// 技术栈分类
 enum TechCategory {
-  frontend('前端技术栈', true),
-  backend('后端技术栈', true),
+  frontend('前端技术栈', false),
+  backend('后端技术栈', false),
   database('数据库', false),
   adminFrontend('后台管理前端', false);
 
@@ -198,6 +198,122 @@ class TechStacks {
       category: TechCategory.frontend,
       tags: ['Rust', 'Desktop', 'Web'],
     ),
+    // Windows 原生
+    TechStack(
+      id: 'cpp_winapi',
+      name: 'C++ WinAPI',
+      icon: Icons.window,
+      description: 'Windows 原生 API',
+      category: TechCategory.frontend,
+      tags: ['C++', 'Windows', 'Native', 'Win32'],
+    ),
+    TechStack(
+      id: 'cpp_mfc',
+      name: 'C++ MFC',
+      icon: Icons.window,
+      description: 'Microsoft Foundation Classes',
+      category: TechCategory.frontend,
+      tags: ['C++', 'Windows', 'MFC', 'Native'],
+    ),
+    TechStack(
+      id: 'cpp_qt',
+      name: 'C++ Qt',
+      icon: Icons.desktop_windows,
+      description: 'Qt 跨平台框架',
+      category: TechCategory.frontend,
+      tags: ['C++', 'Qt', 'Desktop', 'Cross-platform'],
+    ),
+    TechStack(
+      id: 'csharp_wpf',
+      name: 'C# WPF',
+      icon: Icons.window,
+      description: 'Windows Presentation Foundation',
+      category: TechCategory.frontend,
+      tags: ['C#', '.NET', 'XAML', 'Windows'],
+    ),
+    TechStack(
+      id: 'csharp_winforms',
+      name: 'C# WinForms',
+      icon: Icons.window,
+      description: 'Windows Forms',
+      category: TechCategory.frontend,
+      tags: ['C#', '.NET', 'Windows', 'Desktop'],
+    ),
+    TechStack(
+      id: 'csharp_maui',
+      name: 'C# MAUI',
+      icon: Icons.devices,
+      description: '.NET 跨平台 UI',
+      category: TechCategory.frontend,
+      tags: ['C#', '.NET', 'Cross-platform', 'XAML'],
+    ),
+    // 新兴框架
+    TechStack(
+      id: 'svelte',
+      name: 'Svelte',
+      icon: Icons.auto_awesome,
+      description: '编译型前端框架',
+      category: TechCategory.frontend,
+      tags: ['JavaScript', 'Compiler', 'SPA'],
+    ),
+    TechStack(
+      id: 'sveltekit',
+      name: 'SvelteKit',
+      icon: Icons.auto_awesome,
+      description: 'Svelte 全栈框架',
+      category: TechCategory.frontend,
+      tags: ['Svelte', 'SSR', 'Full-stack'],
+    ),
+    TechStack(
+      id: 'solidjs',
+      name: 'Solid.js',
+      icon: Icons.blur_on,
+      description: '高性能响应式框架',
+      category: TechCategory.frontend,
+      tags: ['JavaScript', 'Reactive', 'Fine-grained'],
+    ),
+    TechStack(
+      id: 'remix',
+      name: 'Remix',
+      icon: Icons.sync_alt,
+      description: 'React 全栈框架',
+      category: TechCategory.frontend,
+      tags: ['React', 'SSR', 'Full-stack'],
+    ),
+    TechStack(
+      id: 'astro',
+      name: 'Astro',
+      icon: Icons.rocket_launch,
+      description: '内容驱动静态站点',
+      category: TechCategory.frontend,
+      tags: ['Static', 'Islands', 'Multi-framework'],
+    ),
+    // 小程序原生
+    TechStack(
+      id: 'wechat_miniprogram',
+      name: '微信小程序原生',
+      icon: Icons.chat_bubble,
+      description: '微信原生开发',
+      category: TechCategory.frontend,
+      tags: ['WXML', 'WXSS', '小程序'],
+    ),
+    // iOS/Android 传统
+    TechStack(
+      id: 'ios_uikit',
+      name: 'iOS UIKit',
+      icon: Icons.apple,
+      description: 'iOS 传统 UI 框架',
+      category: TechCategory.frontend,
+      tags: ['Swift', 'Objective-C', 'iOS'],
+    ),
+    TechStack(
+      id: 'android_xml',
+      name: 'Android XML Views',
+      icon: Icons.android,
+      description: 'Android 传统布局',
+      category: TechCategory.frontend,
+      tags: ['Kotlin', 'Java', 'Android', 'XML'],
+    ),
   ];
 
   // ==================== 后端技术栈 ====================
@@ -362,6 +478,85 @@ class TechStacks {
       category: TechCategory.backend,
       tags: ['Kotlin', 'Coroutines', 'Async'],
     ),
+    // Ruby
+    TechStack(
+      id: 'ruby_rails',
+      name: 'Ruby on Rails',
+      icon: Icons.train,
+      description: 'Rails 全栈框架',
+      category: TechCategory.backend,
+      tags: ['Ruby', 'MVC', 'ActiveRecord'],
+    ),
+    // Scala
+    TechStack(
+      id: 'scala_play',
+      name: 'Scala Play',
+      icon: Icons.play_arrow,
+      description: 'Play Framework',
+      category: TechCategory.backend,
+      tags: ['Scala', 'Reactive', 'Akka'],
+    ),
+    // Elixir
+    TechStack(
+      id: 'elixir_phoenix',
+      name: 'Elixir Phoenix',
+      icon: Icons.local_fire_department,
+      description: 'Phoenix 框架',
+      category: TechCategory.backend,
+      tags: ['Elixir', 'Erlang', 'Realtime'],
+    ),
+    // Deno
+    TechStack(
+      id: 'deno_fresh',
+      name: 'Deno Fresh',
+      icon: Icons.eco,
+      description: 'Deno 全栈框架',
+      category: TechCategory.backend,
+      tags: ['Deno', 'TypeScript', 'Islands'],
+    ),
+    TechStack(
+      id: 'deno_oak',
+      name: 'Deno Oak',
+      icon: Icons.park,
+      description: 'Deno Web 框架',
+      category: TechCategory.backend,
+      tags: ['Deno', 'TypeScript', 'Middleware'],
+    ),
+    // 轻量框架
+    TechStack(
+      id: 'hono',
+      name: 'Hono',
+      icon: Icons.whatshot,
+      description: '超轻量 Web 框架',
+      category: TechCategory.backend,
+      tags: ['TypeScript', 'Edge', 'Lightweight'],
+    ),
+    // Go 微服务
+    TechStack(
+      id: 'go_zero',
+      name: 'Go Zero',
+      icon: Icons.hub,
+      description: '微服务框架',
+      category: TechCategory.backend,
+      tags: ['Go', 'Microservices', '国产'],
+    ),
+    TechStack(
+      id: 'go_kratos',
+      name: 'Go Kratos',
+      icon: Icons.hub,
+      description: 'B站微服务框架',
+      category: TechCategory.backend,
+      tags: ['Go', 'Microservices', 'gRPC'],
+    ),
+    // gRPC
+    TechStack(
+      id: 'grpc',
+      name: 'gRPC',
+      icon: Icons.swap_horiz,
+      description: '高性能 RPC 框架',
+      category: TechCategory.backend,
+      tags: ['Protobuf', 'RPC', 'Multi-language'],
+    ),
   ];
 
   // ==================== 数据库 ====================
@@ -457,6 +652,68 @@ class TechStacks {
       category: TechCategory.database,
       tags: ['PostgreSQL', 'BaaS', 'Realtime'],
     ),
+    // 分布式数据库
+    TechStack(
+      id: 'tidb',
+      name: 'TiDB',
+      icon: Icons.hub,
+      description: '分布式 NewSQL',
+      category: TechCategory.database,
+      tags: ['Distributed', 'MySQL兼容', 'HTAP'],
+    ),
+    TechStack(
+      id: 'cockroachdb',
+      name: 'CockroachDB',
+      icon: Icons.bug_report,
+      description: '分布式 SQL',
+      category: TechCategory.database,
+      tags: ['Distributed', 'PostgreSQL兼容', 'Cloud'],
+    ),
+    // OLAP
+    TechStack(
+      id: 'clickhouse',
+      name: 'ClickHouse',
+      icon: Icons.analytics,
+      description: '列式分析数据库',
+      category: TechCategory.database,
+      tags: ['OLAP', 'Analytics', 'Column-store'],
+    ),
+    // 图数据库
+    TechStack(
+      id: 'neo4j',
+      name: 'Neo4j',
+      icon: Icons.share,
+      description: '图数据库',
+      category: TechCategory.database,
+      tags: ['Graph', 'Cypher', 'Relationships'],
+    ),
+    // 时序数据库
+    TechStack(
+      id: 'influxdb',
+      name: 'InfluxDB',
+      icon: Icons.timeline,
+      description: '时序数据库',
+      category: TechCategory.database,
+      tags: ['TimeSeries', 'IoT', 'Metrics'],
+    ),
+    // 宽列存储
+    TechStack(
+      id: 'cassandra',
+      name: 'Cassandra',
+      icon: Icons.view_column,
+      description: '分布式宽列存储',
+      category: TechCategory.database,
+      tags: ['NoSQL', 'Wide-column', 'Distributed'],
+    ),
+    // AWS
+    TechStack(
+      id: 'dynamodb',
+      name: 'DynamoDB',
+      icon: Icons.cloud,
+      description: 'AWS 键值数据库',
+      category: TechCategory.database,
+      tags: ['NoSQL', 'AWS', 'Serverless'],
+    ),
   ];
 
   // ==================== 后台管理前端 ====================
@@ -524,6 +781,30 @@ class TechStacks {
       description: 'Django 自带后台',
       category: TechCategory.adminFrontend,
       tags: ['Django', 'Python', 'Built-in'],
+    ),
+    TechStack(
+      id: 'vue_naive',
+      name: 'Vue + Naive UI',
+      icon: Icons.dashboard,
+      description: 'Naive UI 组件库',
+      category: TechCategory.adminFrontend,
+      tags: ['Vue3', 'TypeScript', 'Admin'],
+    ),
+    TechStack(
+      id: 'tdesign',
+      name: 'TDesign',
+      icon: Icons.dashboard,
+      description: '腾讯设计系统',
+      category: TechCategory.adminFrontend,
+      tags: ['Vue', 'React', 'Tencent'],
+    ),
+    TechStack(
+      id: 'semi_design',
+      name: 'Semi Design',
+      icon: Icons.dashboard,
+      description: '抖音设计系统',
+      category: TechCategory.adminFrontend,
+      tags: ['React', 'ByteDance', 'Admin'],
     ),
   ];
 

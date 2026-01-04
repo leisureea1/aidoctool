@@ -15,7 +15,7 @@ class TechStackSelection {
     this.adminFrontend = const [],
   });
   
-  bool get isValid => frontend.isNotEmpty && backend.isNotEmpty;
+  bool get isValid => frontend.isNotEmpty || backend.isNotEmpty;
   bool get isEmpty => frontend.isEmpty && backend.isEmpty && database.isEmpty && adminFrontend.isEmpty;
   List<TechStack> get all => [...frontend, ...backend, ...database, ...adminFrontend];
   
